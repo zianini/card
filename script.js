@@ -68,6 +68,10 @@
   }
 
   saveBtn.addEventListener("click", function () {
+    // 연락처 저장과 동시에 전화 앱 열기
+    var phoneNumber = contact.phoneDisplay.replace(/[^0-9+]/g, "");
+    window.location.href = "tel:" + phoneNumber;
+
     const vcard = buildVCard();
     const blob = new Blob([vcard], { type: "text/vcard;charset=utf-8" });
     const filename = "gangsa-k.vcf";

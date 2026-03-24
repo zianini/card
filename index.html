@@ -34,9 +34,7 @@
           </linearGradient>
         </defs>
         <rect width="200" height="220" fill="#f3e9db" />
-        <!-- 정수리·윗머리 볼륨 -->
-        <ellipse cx="100" cy="48" rx="58" ry="32" fill="url(#hair)" />
-        <!-- 단발 (턱선 보브) -->
+        <!-- 단발 (얼굴 뒤·옆 실루엣 — 먼저 그림) -->
         <path
           fill="url(#hair)"
           d="M46 112 C42 54 158 54 154 112 C158 142 148 170 100 176 C52 170 42 142 46 112 Z"
@@ -44,6 +42,8 @@
         <ellipse cx="100" cy="120" rx="58" ry="64" fill="url(#skin)" />
         <ellipse cx="48" cy="118" rx="12" ry="14" fill="url(#skin)" />
         <ellipse cx="152" cy="118" rx="12" ry="14" fill="url(#skin)" />
+        <!-- 정수리·윗머리: 얼굴 타원보다 위에 그려야 이마가 대머리처럼 보이지 않음 -->
+        <ellipse cx="100" cy="48" rx="58" ry="32" fill="url(#hair)" />
         <path
           fill="url(#hair)"
           d="M54 78 Q100 64 146 78 L138 98 Q100 88 62 98 Z"

@@ -70,14 +70,59 @@
   saveBtn.addEventListener("click", function () {
     const vcard = buildVCard();
     const blob = new Blob([vcard], { type: "text/vcard;charset=utf-8" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "gangsa-k.vcf";
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-    showToast("연락처 파일이 저장되었습니다. 파일을 열어 추가하세요.", 3500);
+    const filename = "gangsa-k.vcf";
+    const file = new File([blob], filename, { type: "text/vcard;charset=utf-8" });
+
+    function downloadViaAnchor(objectUrl) {
+      const a = document.createElement("a");
+      a.href = objectUrl;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    }
+
+    function tryOpenContactUi(objectUrl) {
+      var w = window.open(objectUrl, "_blank", "noopener,noreferrer");
+      return !!(w && !w.closed);
+    }
+
+    var canShareFile = false;
+    try {
+      canShareFile =
+        typeof File !== "undefined" &&
+        navigator.share &&
+        navigator.canShare &&
+        navigator.canShare({ files: [file] });
+    } catch (_) {
+      canShareFile = false;
+    }
+
+    if (canShareFile) {
+      navigator.share({ files: [file], title: contact.displayName }).then(function () {
+        showToast("공유에서 연락처 또는 파일 앱을 선택해 추가할 수 있습니다.", 3500);
+      }).catch(function (err) {
+        if (err && err.name === "AbortError") return;
+        var url = URL.createObjectURL(blob);
+        downloadViaAnchor(url);
+        tryOpenContactUi(url);
+        setTimeout(function () {
+          URL.revokeObjectURL(url);
+        }, 60000);
+        showToast("파일을 받았습니다. 열어서 연락처에 추가하거나, 새 탭에서 열기를 확인하세요.", 4000);
+      });
+      return;
+    }
+
+    var url = URL.createObjectURL(blob);
+    downloadViaAnchor(url);
+    if (!tryOpenContactUi(url)) {
+      showToast("연락처 파일이 저장되었습니다. 다운로드 폴더에서 파일을 열어 추가하세요.", 4000);
+    } else {
+      showToast("파일이 저장되었습니다. 새 탭이 열리면 연락처 추가를 진행하세요.", 4000);
+    }
+    setTimeout(function () {
+      URL.revokeObjectURL(url);
+    }, 60000);
   });
 })();

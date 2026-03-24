@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>강사K — 웹 명함</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="bg-glow" aria-hidden="true"></div>
+  <main class="card" role="main">
+    <div class="avatar" aria-hidden="true">
+      <svg class="character" viewBox="0 0 200 220" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="skin" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#fff0e0" />
+            <stop offset="100%" stop-color="#f0d4b8" />
+          </linearGradient>
+          <linearGradient id="hair" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#6b5a8c" />
+            <stop offset="100%" stop-color="#4a3d66" />
+          </linearGradient>
+          <linearGradient id="board" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#2d4a3e" />
+            <stop offset="100%" stop-color="#1e342c" />
+          </linearGradient>
+          <linearGradient id="goldRim" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#e8d080" />
+            <stop offset="50%" stop-color="#c9a227" />
+            <stop offset="100%" stop-color="#a67c1a" />
+          </linearGradient>
+        </defs>
+        <rect width="200" height="220" fill="#f3e9db" />
+        <!-- 정수리·윗머리 볼륨 -->
+        <ellipse cx="100" cy="48" rx="58" ry="32" fill="url(#hair)" />
+        <!-- 단발 (턱선 보브) -->
+        <path
+          fill="url(#hair)"
+          d="M46 112 C42 54 158 54 154 112 C158 142 148 170 100 176 C52 170 42 142 46 112 Z"
+        />
+        <ellipse cx="100" cy="120" rx="58" ry="64" fill="url(#skin)" />
+        <ellipse cx="48" cy="118" rx="12" ry="14" fill="url(#skin)" />
+        <ellipse cx="152" cy="118" rx="12" ry="14" fill="url(#skin)" />
+        <path
+          fill="url(#hair)"
+          d="M54 78 Q100 64 146 78 L138 98 Q100 88 62 98 Z"
+        />
+        <path d="M68 108 Q76 100 84 108" fill="none" stroke="#2d2640" stroke-width="3.5" stroke-linecap="round" />
+        <path d="M116 108 Q124 100 132 108" fill="none" stroke="#2d2640" stroke-width="3.5" stroke-linecap="round" />
+        <!-- 동그란 금테 안경 -->
+        <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="76" cy="109" r="13" fill="rgba(255, 250, 235, 0.28)" stroke="url(#goldRim)" stroke-width="2.6" />
+          <circle cx="124" cy="109" r="13" fill="rgba(255, 250, 235, 0.28)" stroke="url(#goldRim)" stroke-width="2.6" />
+          <path d="M89 109 H111" stroke="url(#goldRim)" stroke-width="2.4" />
+          <path d="M63 109 L48 106" stroke="url(#goldRim)" stroke-width="2" />
+          <path d="M137 109 L152 106" stroke="url(#goldRim)" stroke-width="2" />
+        </g>
+        <ellipse cx="62" cy="128" rx="12" ry="8" fill="#f5a8a0" opacity="0.45" />
+        <ellipse cx="138" cy="128" rx="12" ry="8" fill="#f5a8a0" opacity="0.45" />
+        <path d="M88 138 Q100 150 112 138" fill="none" stroke="#c97b6b" stroke-width="3" stroke-linecap="round" />
+        <g transform="translate(118, 142)">
+          <rect x="0" y="0" width="52" height="40" rx="4" fill="url(#board)" stroke="#1a2e26" stroke-width="2" />
+          <line x1="8" y1="32" x2="44" y2="32" stroke="#8fbc9a" stroke-width="1.2" opacity="0.9" />
+          <line x1="12" y1="8" x2="12" y2="36" stroke="#8fbc9a" stroke-width="1.2" opacity="0.9" />
+          <line x1="10" y1="30" x2="42" y2="10" stroke="#ffd966" stroke-width="2" stroke-linecap="round" />
+          <circle cx="38" cy="14" r="2.5" fill="#ff9aa8" />
+        </g>
+        <ellipse cx="118" cy="168" rx="10" ry="8" fill="url(#skin)" />
+      </svg>
+    </div>
+    <p class="label">WEB CARD</p>
+    <h1 class="name">강사K</h1>
+    <p class="role">중등 수학 전문 강사</p>
+    <p class="tagline">중1·중2·중3 내신과 기초를 전문으로, 교과 흐름에 맞춰 개념부터 문제까지 함께합니다.</p>
+    <a class="email" href="mailto:cereniss@nate.com">cereniss@nate.com</a>
+    <div class="actions">
+      <button type="button" class="btn btn-primary" id="copyEmail" aria-label="이메일 주소 복사">이메일 복사</button>
+      <a class="btn btn-ghost" href="mailto:cereniss@nate.com">메일 보내기</a>
+    </div>
+    <p class="toast" id="toast" role="status" aria-live="polite" hidden>복사되었습니다</p>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

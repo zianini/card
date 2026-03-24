@@ -120,9 +120,16 @@ body {
   color: var(--muted);
 }
 
-.email {
-  display: inline-block;
+.contact-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
   margin-bottom: 24px;
+}
+
+.contact-link {
+  display: inline-block;
   font-size: 0.9rem;
   color: var(--text);
   text-decoration: none;
@@ -131,7 +138,7 @@ body {
   transition: color 0.2s, border-color 0.2s;
 }
 
-.email:hover {
+.contact-link:hover {
   color: var(--accent);
   border-color: var(--accent);
 }
